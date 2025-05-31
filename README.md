@@ -1,4 +1,4 @@
-# zebra
+o# zebra
 
 <a href="https://progressivepull.github.io/zebra/">Zebra Website</a>
 
@@ -54,3 +54,6 @@ The `<canvas>` element is incredibly versatile, allowing you to draw a wide vari
 6. **Text & Paths** – You can even write text with `fillText()` or `strokeText()`, and create complex paths with `beginPath()` and `closePath()`.
 
 
+# References 
+
+* [Canvas API - Mozilla Org](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)
