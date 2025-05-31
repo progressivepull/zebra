@@ -1,4 +1,4 @@
-o# zebra
+8o# zebra
 
 <a href="https://progressivepull.github.io/zebra/">Zebra Website</a>
 
@@ -57,3 +57,5 @@ The `<canvas>` element is incredibly versatile, allowing you to draw a wide vari
 # References 
 
 * [Canvas API - Mozilla Org](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)
+
+* [HTML Tutorial Canvas - w3schools]( https://www.w3schools.com/graphics/canvas_intro.asp)
