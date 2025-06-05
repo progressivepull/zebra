@@ -2,6 +2,8 @@
 
 # Shape Drawer - Summary
 
+**Shape Drawer** provides an intuitive and flexible platform for drawing a wide variety of shapes and text directly in the browser, suitable for educational purposes, prototyping, or general creative expression.
+
 **Shape Drawer** is a web-based interactive drawing tool that allows users to draw various geometric shapes and text on an HTML5 canvas. The application is built using HTML, Bootstrap for styling, and jQuery for dynamic interactivity, with drawing operations handled via the Canvas 2D API.
 
 <a href="https://progressivepull.github.io/zebra/">Zebra Website</a>
@@ -69,6 +71,7 @@ The `<canvas>` element is incredibly versatile, allowing you to draw a wide vari
 5. **Curves** – Create smooth curves with `quadraticCurveTo()` or `bezierCurveTo()`.
 6. **Text & Paths** – You can even write text with `fillText()` or `strokeText()`, and create complex paths with `beginPath()` and `closePath()`.
 
+---
 
 # References 
 
@@ -76,7 +79,4 @@ The `<canvas>` element is incredibly versatile, allowing you to draw a wide vari
 
 * [HTML Tutorial Canvas - w3schools]( https://www.w3schools.com/graphics/canvas_intro.asp)
 
----
 
-**Summary:**  
-Shape Drawer provides an intuitive and flexible platform for drawing a wide variety of shapes and text directly in the browser, suitable for educational purposes, prototyping, or general creative expression.
