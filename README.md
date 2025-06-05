@@ -25,6 +25,8 @@
 3. After filling in the parameters, clicking "Submit" draws the shape onto the canvas.
 4. Clicking "Clear" erases the entire canvas for a fresh start.
 5. All drawing operations are handled using JavaScript and the Canvas 2D context.
+6. Download: Clicking "Download as PNG" saves the current canvas content as a PNG image.
+7. Upload: Click "Upload Image" to select an image file; it will draw that image onto the canvas (filling the whole canvas).
 
 ## Technologies Used
 
