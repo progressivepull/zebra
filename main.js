@@ -17,78 +17,87 @@ $(document).ready(function () {
 
     // ======= Drawing Functions =======
 
-    function drawRect(x, y, width, height, color) {
-        context.fillStyle = color;
-        context.fillRect(x, y, width, height);
-    }
+function drawRect(x, y, width, height, color) {
+    console.log(`drawRect(x=${x}, y=${y}, width=${width}, height=${height}, color=${color})`);
+    context.fillStyle = color;
+    context.fillRect(x, y, width, height);
+}
 
-    function drawLine(x1, y1, x2, y2, color) {
+function drawLine(x1, y1, x2, y2, color) {
+    console.log(`drawLine(x1=${x1}, y1=${y1}, x2=${x2}, y2=${y2}, color=${color})`);
+    context.strokeStyle = color;
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+function drawCircle(x, y, radius, color) {
+    console.log(`drawCircle(x=${x}, y=${y}, radius=${radius}, color=${color})`);
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawEllipse(x, y, radiusX, radiusY, color) {
+    console.log(`drawEllipse(x=${x}, y=${y}, radiusX=${radiusX}, radiusY=${radiusY}, color=${color})`);
+    context.fillStyle = color;
+    context.beginPath();
+    context.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
+    console.log(`drawTriangle(x1=${x1}, y1=${y1}, x2=${x2}, y2=${y2}, x3=${x3}, y3=${y3}, color=${color})`);
+    context.fillStyle = color;
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.lineTo(x3, y3);
+    context.closePath();
+    context.fill();
+}
+
+function drawPolygon(points, color) {
+    console.log(`drawPolygon(points=${JSON.stringify(points)}, color=${color})`);
+    context.fillStyle = color;
+    if (points.length < 3) return;
+    context.beginPath();
+    context.moveTo(points[0][0], points[0][1]);
+    for (var i = 1; i < points.length; i++) {
+        context.lineTo(points[i][0], points[i][1]);
+    }
+    context.closePath();
+    context.fill();
+}
+
+function drawCurve(x1, y1, cpx, cpy, x2, y2, color) {
+    console.log(`drawCurve(x1=${x1}, y1=${y1}, cpx=${cpx}, cpy=${cpy}, x2=${x2}, y2=${y2}, color=${color})`);
+    context.strokeStyle = color;
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.quadraticCurveTo(cpx, cpy, x2, y2);
+    context.stroke();
+}
+
+function drawText(x, y, text, font, color) {
+    console.log(`drawText(x=${x}, y=${y}, text="${text}", font="${font}", color=${color})`);
+    context.fillStyle = color;
+    context.font = font;
+    context.fillText(text, x, y);
+}
+
+function drawPath(pathString, color) {
+    console.log(`drawPath(pathString="${pathString}", color=${color})`);
+    try {
+        var path = new Path2D(pathString);
         context.strokeStyle = color;
-        context.beginPath();
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.stroke();
+        context.stroke(path);
+    } catch (e) {
+        alert("Invalid SVG path string.");
     }
-
-    function drawCircle(x, y, radius, color) {
-        context.fillStyle = color;
-        context.beginPath();
-        context.arc(x, y, radius, 0, 2 * Math.PI);
-        context.fill();
-    }
-
-    function drawEllipse(x, y, radiusX, radiusY, color) {
-        context.fillStyle = color;
-        context.beginPath();
-        context.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
-        context.fill();
-    }
-
-    function drawTriangle(x1, y1, x2, y2, x3, y3, color) {
-        context.fillStyle = color;
-        context.beginPath();
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.closePath();
-        context.fill();
-    }
-
-    function drawPolygon(points, color) {
-        context.fillStyle = color;
-        if (points.length < 3) return;
-        context.beginPath();
-        context.moveTo(points[0][0], points[0][1]);
-        for (var i = 1; i < points.length; i++) {
-            context.lineTo(points[i][0], points[i][1]);
-        }
-        context.closePath();
-        context.fill();
-    }
-
-    function drawCurve(x1, y1, cpx, cpy, x2, y2, color) {
-        context.strokeStyle = color;
-        context.beginPath();
-        context.moveTo(x1, y1);
-        context.quadraticCurveTo(cpx, cpy, x2, y2);
-        context.stroke();
-    }
-
-    function drawText(x, y, text, font, color) {
-        context.fillStyle = color;
-        context.font = font;
-        context.fillText(text, x, y);
-    }
-
-    function drawPath(pathString, color) {
-        try {
-            var path = new Path2D(pathString);
-            context.strokeStyle = color;
-            context.stroke(path);
-        } catch (e) {
-            alert("Invalid SVG path string.");
-        }
-    }
+}
 
     // ======= Submit and Clear Buttons for Each Shape =======
 
