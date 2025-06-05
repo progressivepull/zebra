@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shape Drawer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    #drawing-canvas {
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+    .shape-params {
+      display: none;
+    }
+    .shape-params.active {
+      display: block;
+    }
+    #shape-form .hide-on-load {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-3">
+    <h2>Shape Drawer</h2>
+    <canvas id="drawing-canvas" width="500" height="250"></canvas>
+
+    <form id="shape-form">
+      <div class="mb-3">
+        <label for="shape-select" class="form-label">Select Shape:</label>
+        <select id="shape-select" class="form-select">
+          <option value="" selected disabled>Select Shape</option>
+          <option value="line">Lines</option>
+          <option value="rectangle">Rectangle</option>
+          <option value="circle">Circle</option>
+          <option value="ellipse">Ellipse</option>
+          <option value="triangle">Triangle</option>
+          <option value="polygon">Polygon</option>
+          <option value="curve">Curve</option>
+          <option value="text">Text</option>
+          <option value="path">Path</option>
+        </select>
+      </div>
+
+      <!-- Rectangle Template -->
+      <div id="rectangle-params" class="shape-params hide-on-load">
+        <div class="row mb-2">
+          <div class="col">
+            <label for="rect-x">X:</label>
+            <input type="number" id="rect-x" class="form-control" value="10">
+          </div>
+          <div class="col">
+            <label for="rect-y">Y:</label>
+            <input type="number" id="rect-y" class="form-control" value="40">
+          </div>
+          <div class="col">
+            <label for="rect-width">Width:</label>
+            <input type="number" id="rect-width" class="form-control" value="30">
+          </div>
+          <div class="col">
+            <label for="rect-height">Height:</label>
+            <input type="number" id="rect-height" class="form-control" value="70">
+          </div>
+          <div class="col">
+            <label for="rect-color">Color:</label>
+            <input type="text" id="rect-color" class="form-control" value="blue">
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col">
+            <button id="rectangle-submit" type="button" class="btn btn-warning">Submit</button>
+          </div>
+          <div class="col">
+            <button id="rectangle-clear" type="button" class="btn btn-warning">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lines Template -->
+<div id="line-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="line-x1">X1:</label>
+      <input type="number" id="line-x1" class="form-control" value="10">
+    </div>
+    <div class="col">
+      <label for="line-y1">Y1:</label>
+      <input type="number" id="line-y1" class="form-control" value="10">
+    </div>
+    <div class="col">
+      <label for="line-x2">X2:</label>
+      <input type="number" id="line-x2" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="line-y2">Y2:</label>
+      <input type="number" id="line-y2" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="line-color">Color:</label>
+      <input type="text" id="line-color" class="form-control" value="black">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="line-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="line-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Circle Template -->
+<div id="circle-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="circle-x">Center X:</label>
+      <input type="number" id="circle-x" class="form-control" value="150">
+    </div>
+    <div class="col">
+      <label for="circle-y">Center Y:</label>
+      <input type="number" id="circle-y" class="form-control" value="75">
+    </div>
+    <div class="col">
+      <label for="circle-radius">Radius:</label>
+      <input type="number" id="circle-radius" class="form-control" value="50">
+    </div>
+    <div class="col">
+      <label for="circle-color">Color:</label>
+      <input type="text" id="circle-color" class="form-control" value="red">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="circle-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="circle-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ellipse Template -->
+<div id="ellipse-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="ellipse-x">Center X:</label>
+      <input type="number" id="ellipse-x" class="form-control" value="200">
+    </div>
+    <div class="col">
+      <label for="ellipse-y">Center Y:</label>
+      <input type="number" id="ellipse-y" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="ellipse-radiusX">Radius X:</label>
+      <input type="number" id="ellipse-radiusX" class="form-control" value="60">
+    </div>
+    <div class="col">
+      <label for="ellipse-radiusY">Radius Y:</label>
+      <input type="number" id="ellipse-radiusY" class="form-control" value="30">
+    </div>
+    <div class="col">
+      <label for="ellipse-color">Color:</label>
+      <input type="text" id="ellipse-color" class="form-control" value="green">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="ellipse-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="ellipse-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Triangle Template -->
+<div id="triangle-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="tri-x1">X1:</label>
+      <input type="number" id="tri-x1" class="form-control" value="50">
+    </div>
+    <div class="col">
+      <label for="tri-y1">Y1:</label>
+      <input type="number" id="tri-y1" class="form-control" value="50">
+    </div>
+    <div class="col">
+      <label for="tri-x2">X2:</label>
+      <input type="number" id="tri-x2" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="tri-y2">Y2:</label>
+      <input type="number" id="tri-y2" class="form-control" value="150">
+    </div>
+    <div class="col">
+      <label for="tri-x3">X3:</label>
+      <input type="number" id="tri-x3" class="form-control" value="150">
+    </div>
+    <div class="col">
+      <label for="tri-y3">Y3:</label>
+      <input type="number" id="tri-y3" class="form-control" value="50">
+    </div>
+    <div class="col">
+      <label for="tri-color">Color:</label>
+      <input type="text" id="tri-color" class="form-control" value="purple">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="triangle-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="triangle-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Polygon Template -->
+<div id="polygon-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col-10">
+      <label for="polygon-points">Points (x1,y1 x2,y2 x3,y3 ...):</label>
+      <input type="text" id="polygon-points" class="form-control" value="60,20 100,40 100,80 60,100 20,80 20,40">
+    </div>
+    <div class="col">
+      <label for="polygon-color">Color:</label>
+      <input type="text" id="polygon-color" class="form-control" value="orange">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="polygon-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="polygon-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Curve Template (Quadratic Bezier) -->
+<div id="curve-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="curve-x1">Start X:</label>
+      <input type="number" id="curve-x1" class="form-control" value="20">
+    </div>
+    <div class="col">
+      <label for="curve-y1">Start Y:</label>
+      <input type="number" id="curve-y1" class="form-control" value="20">
+    </div>
+    <div class="col">
+      <label for="curve-cpx">Control X:</label>
+      <input type="number" id="curve-cpx" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="curve-cpy">Control Y:</label>
+      <input type="number" id="curve-cpy" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="curve-x2">End X:</label>
+      <input type="number" id="curve-x2" class="form-control" value="200">
+    </div>
+    <div class="col">
+      <label for="curve-y2">End Y:</label>
+      <input type="number" id="curve-y2" class="form-control" value="20">
+    </div>
+    <div class="col">
+      <label for="curve-color">Color:</label>
+      <input type="text" id="curve-color" class="form-control" value="brown">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="curve-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="curve-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Text Template -->
+<div id="text-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col">
+      <label for="text-x">X:</label>
+      <input type="number" id="text-x" class="form-control" value="50">
+    </div>
+    <div class="col">
+      <label for="text-y">Y:</label>
+      <input type="number" id="text-y" class="form-control" value="100">
+    </div>
+    <div class="col">
+      <label for="text-content">Text:</label>
+      <input type="text" id="text-content" class="form-control" value="Hello!">
+    </div>
+    <div class="col">
+      <label for="text-font">Font:</label>
+      <input type="text" id="text-font" class="form-control" value="24px Arial">
+    </div>
+    <div class="col">
+      <label for="text-color">Color:</label>
+      <input type="text" id="text-color" class="form-control" value="black">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="text-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="text-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Path Template (SVG Path string) -->
+<div id="path-params" class="shape-params hide-on-load">
+  <div class="row mb-2">
+    <div class="col-10">
+      <label for="path-data">Path (SVG Path string):</label>
+      <input type="text" id="path-data" class="form-control" value="M10 80 Q 95 10 180 80 T 350 80">
+    </div>
+    <div class="col">
+      <label for="path-color">Color:</label>
+      <input type="text" id="path-color" class="form-control" value="teal">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button id="path-submit" type="button" class="btn btn-warning">Submit</button>
+    </div>
+    <div class="col">
+      <button id="path-clear" type="button" class="btn btn-warning">Clear</button>
+    </div>
+  </div>
+</div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
