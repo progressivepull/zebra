@@ -31,7 +31,7 @@
 - **jQuery**: For DOM manipulation and event handling.
 - **JavaScript**: For drawing logic and form processing.
 
-# Canvas Tutorial
+## Canvas Tutorial
 
 The code references external CSS (style.css) and JavaScript (canvas-script.js) files for additional styling and logic.
 
@@ -57,7 +57,7 @@ For example, in JavaScript, you can use the `CanvasRenderingContext2D` to draw s
 
 If you want to create a visual representation of a structured list inside a `<canvas>`, you can draw rectangles or text alongside these shapes to make it look like an actual list.
 
-# List Shapes
+## List Shapes
 
 
 The `<canvas>` element is incredibly versatile, allowing you to draw a wide variety of shapes using JavaScript. Here are some common shapes you can create:
