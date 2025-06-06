@@ -26,10 +26,13 @@
     <h2>Shape Drawer</h2>
     <canvas id="drawing-canvas" width="500" height="250"></canvas>
 
+    <!-- Add a visible file upload area below the canvas -->
     <div class="my-3">
       <button id="download-canvas" type="button" class="btn btn-warning">Download Canvas</button>
-      <input type="file" id="upload-canvas" accept="image/*" style="display:none;" />
       <button id="upload-canvas-btn" type="button" class="btn btn-warning">Upload Image</button>
+      <br><br>
+      <input type="file" id="upload-canvas" accept="image/*" class="form-control mt-2" style="max-width:300px;" />
+      <small class="form-text text-muted">Choose an image to upload onto the canvas.</small>
     </div>
 
     <form id="shape-form">
