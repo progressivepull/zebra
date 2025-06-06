@@ -237,16 +237,20 @@ $('#upload-canvas-btn').click(function () {
 // --- Load image onto canvas when file is selected ---
 $('#upload-canvas').change(function (e) {
     var file = e.target.files[0];
+    console.log('Upload input changed. File selected:', file ? file.name : 'none');
     if (!file) return;
     var reader = new FileReader();
     reader.onload = function (event) {
+        console.log('FileReader loaded file.');
         var img = new Image();
         img.onload = function () {
+            console.log('Image loaded. Drawing on canvas.');
             var canvas = document.getElementById('drawing-canvas');
             var context = canvas.getContext('2d');
             // Optionally, clear the canvas first:
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.drawImage(img, 0, 0, canvas.width, canvas.height);
+            console.log('Image drawn on canvas.');
         };
         img.src = event.target.result;
     };
