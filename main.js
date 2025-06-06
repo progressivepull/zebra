@@ -220,4 +220,37 @@ function drawPath(pathString, color) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     });
 
+    // --- Download canvas as image ---
+$('#download-canvas').click(function () {
+    var canvas = document.getElementById('drawing-canvas');
+    var link = document.createElement('a');
+    link.download = 'canvas.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+});
+
+// --- Show file input when upload button is clicked ---
+$('#upload-canvas-btn').click(function () {
+    $('#upload-canvas').click();
+});
+
+// --- Load image onto canvas when file is selected ---
+$('#upload-canvas').change(function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = function () {
+            var canvas = document.getElementById('drawing-canvas');
+            var context = canvas.getContext('2d');
+            // Optionally, clear the canvas first:
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
 });
